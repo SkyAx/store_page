@@ -5,12 +5,142 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="node_modules/uikit/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="/lib/uikit/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Document</title>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/uikit/dist/js/uikit.min.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/uikit/dist/js/uikit.min.js"></script>
 </head>
 <body>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, adipisci dolorem eaque eius eligendi esse impedit inventore minus possimus, quae, quia quibusdam quisquam quo recusandae voluptas. Eligendi illo quos sit!
+<header>
+    <div class="uk-position-relative">
+        <img src="/img/header-bg.jpg" alt="">
+        <div class="uk-position-top">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="uk-navbar-left">
+                    <ul class="uk-navbar-nav">
+                        <li>
+                            <a href="/"><img src="/img/logo.png" alt="Logo"></a>
+                        </li>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li class="uk-active">
+                            <a href="#">Каталог</a>
+                            <div class="uk-navbar-dropdown">
+                                <ul class="uk-nav uk-navbar-dropdown-nav">
+                                    <li class="uk-active"><a href="#">Active</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li class="uk-nav-header">Header</li>
+                                    <li><a href="#">Item</a></li>
+                                    <li><a href="#">Item</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="#">Item</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#modal-example" class="uk-text-danger	" uk-toggle>Корзина</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="cart-container">
+                    <!-- This is the modal -->
+                    <div id="modal-example" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-modal-title">Headline</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p class="uk-text-right">
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button class="uk-button uk-button-primary" type="button">Save</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="uk-container">
+        <h2>Каталог</h2>
+        <ul class="uk-child-width-1-2@m catalog-list" uk-grid>
+            <li class="uk-card uk-card-default catalog-item">
+                <div class="uk-card-media-top">
+                    <img class="item-image" src="https://images.dominos.by/media/dominos/osg/api/2018/12/12/texas_small.png" alt="Техас">
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="item-name uk-card-title">Техас</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p class="item-price uk-text-warning">29 р</p>
+                    <div class="order-container">
+                        <button class="uk-button uk-button-primary order-button">Заказать</button>
+                        <div class="counter-container">
+                            <input class="uk-input uk-form-width-xsmall order-counter-input" type="text" placeholder="1">
+                            <a class="uk-button uk-button-default order-counter-plus" href="#">+</a>
+                            <a class="uk-button uk-button-default order-counter-minus" href="#">-</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="uk-card uk-card-default catalog-item">
+                <div class="uk-card-media-top">
+                    <img class="item-image" src="https://images.dominos.by/media/dominos/osg/api/2018/12/12/pepperoni_i_tomaty_small.png" alt="Пепперони и томаты">
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="item-name uk-card-title">Техас</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p class="item-price uk-text-warning">29 р</p>
+                    <div class="order-container">
+                        <button class="uk-button uk-button-primary order-button">Заказать</button>
+                        <div class="counter-container">
+                            <input class="uk-input uk-form-width-xsmall order-counter-input" type="text" placeholder="1">
+                            <a class="uk-button uk-button-default order-counter-plus" href="#">+</a>
+                            <a class="uk-button uk-button-default order-counter-minus" href="#">-</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="uk-card uk-card-default catalog-item">
+                <div class="uk-card-media-top">
+                    <img class="item-image" src="https://images.dominos.by/media/dominos/osg/api/2018/09/12/gavayskaya.png" alt="Гавайская">
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="item-name uk-card-title">Техас</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p class="item-price uk-text-warning">29 р</p>
+                    <div class="order-container">
+                        <button class="uk-button uk-button-primary order-button">Заказать</button>
+                        <div class="counter-container">
+                            <input class="uk-input uk-form-width-xsmall order-counter-input" type="text" placeholder="1">
+                            <a class="uk-button uk-button-default order-counter-plus" href="#">+</a>
+                            <a class="uk-button uk-button-default order-counter-minus" href="#">-</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="uk-card uk-card-default catalog-item">
+                <div class="uk-card-media-top">
+                    <img class="item-image" src="https://images.dominos.by/media/dominos/osg/api/2018/09/12/pepperoni_bluz.png" alt="Пепперони Блюз
+                </div>
+                <div class="uk-card-body">
+                    <h3 class="item-name uk-card-title">Техас</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+                    <p class="item-price uk-text-warning">29 р</p>
+                    <div class="order-container">
+                        <button class="uk-button uk-button-primary order-button">Заказать</button>
+                        <div class="counter-container">
+                            <input class="uk-input uk-form-width-xsmall order-counter-input" type="text" placeholder="1">
+                            <a class="uk-button uk-button-default order-counter-plus" href="#">+</a>
+                            <a class="uk-button uk-button-default order-counter-minus" href="#">-</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+
+        </ul>
+    </section>
+</main>
 </body>
 </html>
