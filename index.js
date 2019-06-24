@@ -19,6 +19,11 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.get('/about', function (req, res) {
+    //Отправляем файл страницы
+    res.sendFile(path.join(__dirname + '/pages/about.html'));
+});
+
 //Просшуиваем порт на запросы
 app.listen(app.get('port'));
 
