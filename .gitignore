@@ -6,6 +6,9 @@ package-lock.json
 /dist
 /tmp
 
+/js/dist
+/styles/dist
+
 # dependencies
 /node_modules
 

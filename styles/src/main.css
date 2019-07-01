@@ -1,0 +1,36 @@
+body {
+  background: #78ec5d;
+}
+
+section {
+  margin-top: 100px;
+}
+
+.order-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+}
+
+.order-counter-input {
+  margin-right: 25px;
+}
+
+.uk-button.order-counter-plus, .uk-button.order-counter-minus {
+  padding: 0 15px;
+}
+
+.uk-card .uk-card-media-top {
+  text-align: center;
+  padding-top: 40px;
+}
+
+.item-image {
+  max-width: 200px;
+}
+
+/*# sourceMappingURL=main.css.map */
