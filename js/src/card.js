@@ -1,10 +1,11 @@
 let Card = function (title, image, description, price) {
-    this.title = new Heading(3 ,title, 'item-name uk-card-title');
+    this.title = new Heading(3, title, 'item-name uk-card-title');
     this.image = new Image('item-image', image);
     this.description = new Paragraph(description, 'item-description');
     this.price = new Paragraph(price, 'item-price uk-text-warning');
     this.cardButton = new Button('Заказать');
     this.cardCounter = new CardCounter();
+    this.initEvents();
     return $('<li/>')
         .addClass('uk-card uk-card-default catalog-item')
         .append($('<div/>')
@@ -20,6 +21,21 @@ let Card = function (title, image, description, price) {
                 .addClass('order-container')
                 .append(this.cardButton)
                 .append(this.cardCounter)))
+};
+
+Card.prototype.initEvents = function () {
+    $(this.cardButton).on('click', (e) => {
+        let itemObj = {
+            title: this.title.text(),
+            count: this.cardCounter.find('input').val(),
+            price: this.price.text(),
+            image: this.image.attr('src')
+        };
+
+
+
+        window.modal.$itemList.append(new CardItem(itemObj.image, itemObj.title, itemObj.count));
+    });
 };
 
 let CardCounter = function (counterStyles, inputStyles) {

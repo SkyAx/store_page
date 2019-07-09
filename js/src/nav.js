@@ -2,13 +2,15 @@ let Nav = function (items) {
     this.items = items.map((el) => {
         return new NavItem(el)
     });
-    return $('<nav/>')
+    this.$modal = new Modal('Корзина', 'modal-example', $('<div>', { 'class': 'cart-container' }));
+    this.template = $('<nav/>')
         .attr('uk-navbar', '')
         .addClass('uk-navbar-container uk-navbar-transparent')
         .append($('<ul/>')
             .addClass('uk-navbar-nav')
             .append(this.items))
-        .append(new Modal('Корзина', 'modal-example', $('<div>', { 'class': 'cart-container' })))
+        .append(this.$modal);
+    return this.template;
 };
 
 let NavItem = function (el) {

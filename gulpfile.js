@@ -53,7 +53,6 @@ function css() {
 }
 
 function js() {
-    console.log('js ocompile');
     return gulp
         .src(['./js/src/**/*.js',])
         .pipe(concat('index.js'))
@@ -97,7 +96,7 @@ function watchFiles() {
 
 // define complex tasks
 const build = gulp.parallel(cssLibs, jsLibs, js, css);
-const watch = gulp.parallel(cssLibs, jsLibs, js, watchFiles, nodemonStart, browserSync);
+const watch = gulp.parallel(cssLibs, jsLibs, js, css, watchFiles, nodemonStart, browserSync);
 
 // export tasks
 exports.css = css;
