@@ -23,8 +23,10 @@ app.get('/about', function (req, res) {
     res.sendFile(path.join(__dirname + '/pages/about.html'));
 });
 
+app.get('/contacts', function (req, res) {
+    //Отправляем файл страницы
+    res.sendFile(path.join(__dirname + '/pages/contacts.html'));
+});
+
 //Просшуиваем порт на запросы
 app.listen(app.get('port'));
-
-
-

@@ -70,55 +70,103 @@ let drinks = [
     }
 ];
 
+let nav = [
+    {
+        text: 'Главная',
+        address: '/',
+        className: '',
+        wrapper: 'li',
+    },
+    {
+        text: 'О нас',
+        address: '/about',
+        className: '',
+        wrapper: 'li',
+    },
+    {
+        text: 'Контакты',
+        address: '/contacts',
+        className: '',
+        wrapper: 'li',
+    },
+    {
+        text: 'Корзина',
+        address: '#modal-example',
+        className: 'uk-text-danger open-modal-btn',
+        wrapper: 'li',
+        specAttr: 'uk-toggle'
+    }
+];
+
 let Image = function (classNames, src, alt) {
-    this.classNames = classNames;
+    this.classNames = classNames || '';
     this.src = src;
     this.alt = alt || 'Broken image';
-    return $('<img/>')
+    this.$template = $('<img/>')
         .addClass(this.classNames)
         .attr({
             'src': this.src,
             'alt': this.alt
         });
+
+    return this.$template;
 };
 
 let Button = function (text, classNames) {
     this.text = text;
     this.classNames = classNames || 'uk-button uk-button-default';
-    return $('<button/>')
+    this.$template = $('<button/>')
         .addClass(this.classNames)
         .text(this.text);
+
+    return this.$template;
 };
 
 let Heading = function (level, text, classNames) {
     this.text = text;
     this.level = level;
     this.classNames = classNames || 'uk-card-title';
-    return $(`<h${this.level}/>`)
+    this.$template = $(`<h${this.level}/>`)
         .text(this.text)
         .addClass(this.classNames);
+
+    return this.$template;
 };
 
 let Paragraph = function (text, classNames) {
     this.text = text;
     this.classNames = classNames;
-    return $('<p/>')
+    this.$template = $('<p/>')
         .html(this.text)
         .addClass(this.classNames);
+
+    return this.$template;
 };
 
-let Input = function (val, placeholder, classNames,  type) {
+let Input = function (val, placeholder, classNames, type) {
     this.val = val;
     this.placeholder = placeholder;
     this.className = classNames || 'uk-input';
     this.type = type || 'text';
-    return $('<input/>')
+    this.$template = $('<input/>')
         .addClass(this.className)
         .attr({
             type: this.type,
             placeholder: this.placeholder
         })
         .val(this.val);
+
+    return this.$template;
+};
+
+let List = function (id, className) {
+    this.id = id;
+    this.className = className || '';
+    this.$template = $('<ul/>')
+        .addClass(this.className)
+        .attr('id', this.id);
+
+    return this.$template;
 };
 
 window.onload = function () {
@@ -130,25 +178,5 @@ window.onload = function () {
         $('.drinks-list').append(new Card(drink.title, drink.image, drink.description, drink.price));
     });
 
-    $('#nav-container').append(new Nav([
-        {
-            text: 'Главная',
-            address: '/',
-            className: '',
-            wrapper: 'li',
-        },
-        {
-            text: 'О нас',
-            address: '/about',
-            className: '',
-            wrapper: 'li',
-        },
-        {
-            text: 'Корзина',
-            address: '#modal-example',
-            className: 'uk-text-danger',
-            wrapper: 'li',
-            specAttr: 'uk-toggle'
-        }
-    ]));
+    $('#nav-container').append(new Nav(nav));
 };

@@ -1,6 +1,6 @@
-let CardItem = function(image, title, count) {
-    this.removeButton = new Button('Del');
-    this.template = $('<div/>')
+let CartItem = function (image, title, count) {
+    this.$removeButton = new Button('Del');
+    this.$template = $('<div/>')
         .addClass('uk-card uk-card-default')
         .append(
             $('<div/>')
@@ -12,7 +12,7 @@ let CardItem = function(image, title, count) {
                         .append(
                             new Image('uk-border-circle', image)
                                 .attr({
-                                    width : "40",
+                                    width: "40",
                                     height: "40"
                                 })
                         ))
@@ -21,17 +21,20 @@ let CardItem = function(image, title, count) {
                     .append(new Heading(3, title, 'uk-card-title uk-margin-remove-bottom'))
                     .append(new Paragraph(count))
 
-                    .append(this.removeButton)
+                    .append(this.$removeButton)
                 ));
+
     this.initEvents();
-    return this.template;
+    return this.$template;
 };
 
-CardItem.prototype = {
+CartItem.prototype = {
     initEvents: function () {
-        this.removeButton.on('click', (e) => {
+        this.$removeButton.on('click', (e) => {
             e.preventDefault();
-            this.removeButton.closest('.uk-card.uk-card-default').remove();
+            let key = window.cart.getIndexByKey($(e.target).siblings('.uk-card-title').text());
+            window.cart.removeItemByKey(key);
+            window.cart.updateCart();
         })
     }
 };
