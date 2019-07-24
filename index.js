@@ -37,6 +37,8 @@ app.get('/contacts', function (req, res) {
     res.sendFile(path.join(__dirname + '/pages/contacts.html'));
 });
 
+
+
 app.get('/getProductsCount', (req, res, next) => {
     let products = (db.getData('/products'));
     res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -56,7 +58,7 @@ app.post('/addProduct', (req, res) => {
         res.end(JSON.stringify({state:"success", products: db.getData('/products')}));
     } else {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({state:"error",error:"product contains"}));
+        res.end(JSON.stringify({state:"error",error:"Этот продукт уже находится в корзине"}));
     }
 });
 

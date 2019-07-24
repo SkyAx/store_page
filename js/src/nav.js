@@ -22,11 +22,20 @@ Nav.prototype = {
     initEvents : function () {
         this.$openCartBtn.on('click', (e) => {
             e.preventDefault();
-            if(!$(window.cart.$itemList).children().length) {
-                window.cart.items.forEach((el) => {
-                    window.cart.$itemList.append(new CartItem(el.image, el.title, el.count));
-                });
-            }
+            window.cart.$itemList.children().remove();
+            $.ajax({
+                method: 'GET',
+                url: '/getProducts',
+                success: (res) => {
+                    if(res.length){
+                        res.forEach((item) => {
+                            window.cart.$itemList.append(new CartItem(item));
+                        })
+                    } else {
+                        window.cart.$itemList.append(new Paragraph('Ваша корзина пуста'));
+                    }
+                }
+            })
         });
     },
     findModalOpenBtn : function (arr) {

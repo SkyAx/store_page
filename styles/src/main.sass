@@ -1,6 +1,13 @@
 section
     margin-top: 100px
 
+
+    li.uk-card
+        padding-left: 0
+
+        .uk-alert-danger
+            margin-top: 0
+
 .order-container
     display: flex
     justify-content: space-between
@@ -27,3 +34,34 @@ section
 .logo
     width: 80px
     margin-right: 50px
+
+
+#item-list
+    li.uk-card.uk-card-default
+        padding: 10px
+        box-sizing: border-box
+        list-style: none
+
+        &:not(:last-child)
+            margin-bottom: 40px
+
+
+    .uk-width-expand
+        display: flex
+        flex-wrap: unset
+        align-items: center
+
+        .counter-container
+            display: flex
+            align-items: center
+
+        h5
+            margin-right: auto
+
+        .remove-item
+            margin-left: 20px
+            margin-right: 0
+            height: 40px
+            width: 60px
+            cursor: pointer
+

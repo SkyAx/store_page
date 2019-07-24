@@ -1,15 +1,17 @@
-let Card = function (title, image, description, price) {
+let Card = function (product) {
+    let {title, image, description, price, id} = product;
     this.$title = new Heading(3, title, 'item-name uk-card-title');
     this.$image = new Image('item-image', image);
     this.$description = new Paragraph(description, 'item-description');
     this.$price = new Paragraph(price, 'item-price uk-text-warning');
     this.$cardButton = new Button('Заказать');
-    this.$cardCounter = new CardCounter();
+    this.$cardCounter = new Counter().template;
     this.$template = $('<li/>')
+        .attr('data-product-id', id)
         .addClass('uk-card uk-card-default catalog-item')
         .append($('<div/>')
             .addClass('uk-card-media-top')
-            .append(this.image)
+            .append(this.$image)
         )
         .append($('<div/>')
             .addClass('uk-card-body')
@@ -26,63 +28,41 @@ let Card = function (title, image, description, price) {
 };
 
 Card.prototype = {
-    initEvents : function () {
+    initEvents: function () {
         $(this.$cardButton).on('click', () => {
-            window.cart.addItem({
-                title: this.$title.text(),
-                count: this.$cardCounter.find('input').val(),
-                price: this.$price.text(),
-                image: this.$image.attr('src')
-            });
+            $.ajax({
+                method: 'POST',
+                url: '/addProduct',
+                dataType: 'json',
+                data: {
+                    productTitle: this.$title.text(),
+                    productCount: this.$cardCounter.find('input').val(),
+                    productPrice: this.$price.text(),
+                    productImage: this.$image.attr('src'),
+                    productId: this.$template.data('product-id')
+                },
+                success: (res) => {
+                    this.showResponseText(res);
+                },
+                error: (res) => {
+                    this.showResponseText(res);
+                }
+            })
         });
-    }
-};
-
-let CardCounter = function (counterStyles, inputStyles) {
-    this.counterStyles = counterStyles || 'counter-container';
-    this.inputStyles = inputStyles;
-    this.$counterInput = new Input(1, 1, 'uk-input uk-form-width-xsmall order-counter-input');
-    this.$incr = new Button('+', 'uk-button uk-button-default order-counter-plus');
-    this.$decr = new Button('-', 'uk-button uk-button-default order-counter-minus');
-    this.$template = $('<div/>')
-        .addClass(this.counterStyles)
-        .append(this.$counterInput)
-        .append(this.$incr)
-        .append(this.$decr);
-
-    this.initEvents();
-    return this.$template;
-};
-
-
-CardCounter.prototype = {
-    isEmptyCounter : function () {
-        return parseInt(this.$counterInput.val()) === 1;
     },
-    getCountValue : function () {
-        return parseInt(this.$counterInput.val());
-    },
-    setCountValue : function (val) {
-        return this.$counterInput.val(val);
-    },
-    initEvents : function () {
-        this.$incr.on('click', () => {
-            this.setCountValue(this.getCountValue() + 1);
-        });
-
-        this.$decr.on('click', () => {
-            if (this.isEmptyCounter()) {
-                this.setCountValue(1);
-            } else {
-                this.setCountValue(this.getCountValue() - 1);
-            }
-        });
-
-        this.$counterInput.on('change', () => {
-            if (!this.$counterInput.val()) {
-                this.setCountValue(1);
-            }
-            this.setCountValue(this.getCountValue());
-        });
+    showResponseText: function (res) {
+        if(res.responseJSON){
+            this.$template.append(
+                `<div class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p>${res.responseJSON.error}</p>
+                </div>`)
+        } else {
+            this.$template.append(
+                `<div class="uk-alert-success" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p>Ваш товар добавлен в корзину</p>
+            </div>`)
+        }
     }
 };
